@@ -12,6 +12,7 @@ class Email:
         self.settings = settings
 
     async def __call__(self, receiver_email: str, subject: str, body: str) -> bool:
+        logger.info(f"DEBUG: Attempting to connect to {settings.SMTP_HOST}:{settings.SMTP_PORT} for {receiver_email}")
         for i in range(1, 4):
             try:
                 message = EmailMessage()

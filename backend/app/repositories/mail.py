@@ -24,14 +24,16 @@ class Email:
                 tls_context.check_hostname = False
                 tls_context.verify_mode = ssl.CERT_NONE
 
+                is_port_465 = int(settings.SMTP_PORT) == 465
+
                 await aiosmtplib.send(
                     message,
                     hostname=settings.SMTP_HOST,
                     port=settings.SMTP_PORT,
                     username=settings.SMTP_USER,
                     password=settings.SMTP_PASSWORD,
-                    use_tls=True,
-                    start_tls=False,
+                    use_tls=is_port_465,
+                    start_tls=not is_port_465,
                     tls_context=tls_context
                 )
                 return True

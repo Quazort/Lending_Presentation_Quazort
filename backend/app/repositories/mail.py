@@ -16,7 +16,7 @@ class Email:
             try:
                 message = EmailMessage()
                 message["Subject"] = subject
-                message["From"] = settings.SMTP_USER
+                message["From"] = settings.SMTP_SENDER_EMAIL
                 message["To"] = receiver_email
 
                 message.set_content(body)

@@ -16,6 +16,7 @@ class Settings(BaseSettings):
     SMTP_PORT: str
     SMTP_PASSWORD: str
     AI_SYSTEM_PROMPT: str
+    SMTP_SENDER_EMAIL: str
 
     model_config = SettingsConfigDict(env_file=BASE_DIR / ".env", env_file_encoding='utf-8')
 

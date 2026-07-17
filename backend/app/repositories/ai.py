@@ -29,7 +29,13 @@ class AI:
                     response_format={'type': 'json_object'},
                     stream=False)
                 raw_content = ai_response.choices[0].message.content
-                parsed_data = AIResponseSchema.model_validate_json(raw_content)
+                clean_json = raw_content.strip()
+                if clean_json.startswith("```json"):
+                    clean_json = clean_json[7:]
+                if clean_json.endswith("```"):
+                    clean_json = clean_json[:-3]
+                clean_json = clean_json.strip()
+                parsed_data = AIResponseSchema.model_validate_json(clean_json)
                 return parsed_data
             except AuthenticationError as e:
                 logger.error(f"Key problem:{e}")
@@ -39,4 +45,4 @@ class AI:
             except Exception as e:
                 logger.error(f"AI malfunction: {e}")
 
-        return ai_response
+        return None

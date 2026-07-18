@@ -9,8 +9,7 @@ from backend.app.repositories.mail import Email
 logger = get_logger(__file__)
 
 agent = AI(settings.AI_SYSTEM_PROMPT)
-mail = Email()
-
+email = Email(settings=settings)
 
 
 async def handle_feedback_background(feedback) -> None:
@@ -44,12 +43,13 @@ async def handle_feedback_background(feedback) -> None:
         user_body += ai_suffix
         admin_body += ai_suffix
 
-    user_sent = await mail(
+    user_sent = await email(
         receiver_email=feedback.email,
         subject="Ваше обращение принято - Quazort",
         body=user_body
     )
-    admin_sent = await mail(
+
+    admin_sent = await email(
         receiver_email=settings.ADMIN_EMAIL,
         subject="Новое обращение с Lending Quazort!",
         body=admin_body

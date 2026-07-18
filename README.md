@@ -31,16 +31,18 @@ git clone https://github.com/Quazort/Lending_Presentation_Quazort.git
 Для получения детальной информации по заполнению .env вы можете обратиться к разработчику @Akzbolone - Telegram
 
 Дальше в корне проекта создайте файл .env в который пропишите следующие переменные
-- AI_MODEL="модель"
-- AI_KEY="ваш Api key от модели"
-- DATABASE_URL="sqlite+aiosqlite:///./database.sqlite3"
-- BASE_API_AI="юрл подключения к модели"
-- SMTP_USER="xxxxx@mail.ru"
-- ADMIN_EMAIL="xxxxx@mail.ru"
-- SMTP_HOST="smtp.mail.ru"
-- SMTP_PORT="465"
-- SMTP_PASSWORD="пароль от smtp"
-- AI_SYSTEM_PROMPT="Ты — автоматический ассистент-автоответчик...."
+```
+AI_MODEL="модель ИИ"
+AI_KEY="ваш Api key от модели"
+DATABASE_URL="sqlite+aiosqlite:///./database.sqlite3"
+BASE_API_AI="url подключения к модели"
+SMTP_USER="xxxxx@mail.ru"
+ADMIN_EMAIL="xxxxx@mail.ru"
+SMTP_HOST="smtp.mail.ru"
+SMTP_PORT="465"
+SMTP_PASSWORD="пароль от smtp"
+AI_SYSTEM_PROMPT="Ты — автоматический ассистент-автоответчик...."
+```
 
 Дальше запустите докер локально и введите в терминале в корне проекта
 
@@ -100,6 +102,6 @@ docker-compose up --build
 
 ### 7. Хранение данных:
 
-- Хранение логов реализовано в папле logs. Там происходит автоматическая ротация файлов. Каждый день в полночь файлы обновляются
+- Хранение логов реализовано в папке logs. Там происходит автоматическая ротация файлов. Каждый день в полночь файлы обновляются
 - Использована бд SQLlite для хранения статистики
 - Rate limiting реализован в обычном dict в оперативной памяти процесса Python 
